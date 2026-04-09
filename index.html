@@ -5,440 +5,423 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Viber Pay — Card Activation | Tony Yung</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 *{box-sizing:border-box;margin:0;padding:0;}
 :root{
-  --v:#7360F2;--vm:#9B8FF7;--vd:#4B3BC7;
-  --bg:#0B0B12;--s:#141420;--s2:#1D1D2E;
-  --br:rgba(115,96,242,0.18);--t:#EEEEF8;--mu:#7878A0;
+  --v:#7360F2;--vd:#4B3BC7;
+  --bg:#0B0B12;--s:#161624;--s2:#1E1E2E;
+  --br:rgba(115,96,242,0.2);
   --g:#2ECC8A;--a:#F4A136;--r:#E02D4F;
 }
-body{font-family:"Plus Jakarta Sans",sans-serif;background:var(--bg);color:var(--t);min-height:100vh;}
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:.8rem 2rem;background:rgba(11,11,18,.95);backdrop-filter:blur(14px);border-bottom:1px solid var(--br);}
-.nb{font-weight:800;font-size:13px;color:var(--v);}
-.pills{display:flex;gap:5px;}
-.pill{padding:4px 13px;border-radius:20px;font-size:11px;font-weight:600;cursor:pointer;border:1px solid var(--br);background:transparent;color:var(--mu);transition:all .18s;font-family:"Plus Jakarta Sans",sans-serif;}
+body{font-family:"Plus Jakarta Sans",sans-serif;background:var(--bg);color:#fff;min-height:100vh;}
+
+/* Nav */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:.9rem 2.5rem;background:rgba(11,11,18,.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--br);}
+.nb{font-weight:800;font-size:13px;color:var(--v);letter-spacing:.02em;}
+.pills{display:flex;gap:6px;}
+.pill{padding:5px 16px;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;border:1px solid var(--br);background:transparent;color:rgba(255,255,255,.45);transition:all .18s;font-family:"Plus Jakarta Sans",sans-serif;}
 .pill.on,.pill:hover{background:var(--v);color:#fff;border-color:var(--v);}
-.nby{font-size:11px;color:var(--mu);font-family:"JetBrains Mono",monospace;}
-.slides{padding-top:58px;}
-.slide{min-height:100vh;display:none;flex-direction:column;padding:2.4rem 3rem 3rem;max-width:940px;margin:0 auto;animation:fi .2s ease;}
+.nby{font-size:11px;color:rgba(255,255,255,.3);letter-spacing:.05em;}
+
+/* Slides */
+.slides{padding-top:62px;}
+.slide{min-height:100vh;display:none;flex-direction:column;padding:3rem 4rem 3rem;max-width:1000px;margin:0 auto;}
 .slide.on{display:flex;}
-@keyframes fi{from{opacity:0;transform:translateY(4px);}to{opacity:1;}}
-.ey{font-family:"JetBrains Mono",monospace;font-size:10px;color:var(--vm);letter-spacing:.14em;text-transform:uppercase;margin-bottom:.3rem;}
-.ttl{font-family:"Plus Jakarta Sans",sans-serif;font-size:clamp(24px,2.8vw,36px);font-weight:800;line-height:1.15;color:#fff;margin-bottom:.3rem;letter-spacing:-.02em;}
-.sub{font-size:15px;color:#fff;margin-bottom:1.75rem;line-height:1.65;max-width:580px;}
-.card{background:var(--s);border:1px solid var(--br);border-radius:12px;padding:1.1rem 1.35rem;margin-bottom:.8rem;}
-.clbl{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--vm);text-transform:uppercase;letter-spacing:.12em;margin-bottom:.65rem;}
-.g2{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;}
-.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.8rem;}
-.ft{width:100%;border-collapse:collapse;font-size:14px;}
-.ft th{text-align:left;padding:6px 11px;font-family:"JetBrains Mono",monospace;font-size:11px;color:#ccc;text-transform:uppercase;letter-spacing:.07em;border-bottom:1px solid var(--br);}
-.ft td{padding:9px 11px;border-bottom:1px solid rgba(255,255,255,.03);line-height:1.5;vertical-align:middle;}
-.ft tr:last-child td{border-bottom:none;}
-.ft tr.hl td{background:rgba(115,96,242,.07);}
-.ft tr.hl td:first-child{border-left:3px solid var(--v);padding-left:10px;}
-.bx{font-family:"JetBrains Mono",monospace;font-size:11px;padding:2px 9px;border-radius:14px;display:inline-block;font-weight:500;}
-.b-ok{background:rgba(46,204,138,.12);color:var(--g);}
-.b-w{background:rgba(244,161,54,.12);color:var(--a);}
-.b-r{background:rgba(224,45,79,.14);color:var(--r);}
-.hyp{background:var(--s);border:1px solid var(--br);border-radius:12px;padding:1rem 1.1rem;}
-.htop{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:.5rem;}
-.htitle{font-weight:700;font-size:15px;color:#fff;line-height:1.3;}
-.imp{font-family:"JetBrains Mono",monospace;font-size:9px;padding:2px 7px;border-radius:7px;white-space:nowrap;flex-shrink:0;font-weight:500;}
-.ih{background:rgba(224,45,79,.14);color:var(--r);}
-.im{background:rgba(244,161,54,.12);color:var(--a);}
-.hbody{font-size:14px;color:#fff;line-height:1.65;}
-ul.pts{list-style:none;padding:0;margin-top:.4rem;}
-ul.pts li{padding-left:14px;position:relative;margin-bottom:3px;font-size:14px;color:#fff;line-height:1.55;}
-ul.pts li::before{content:"·";position:absolute;left:3px;color:var(--vm);font-weight:700;}
-ul.pts li strong{color:var(--t);}
-.hfix{margin-top:.5rem;padding-top:.5rem;border-top:1px solid var(--br);font-size:11px;color:var(--vm);line-height:1.55;}
-.sigs{background:var(--s2);border-radius:10px;padding:.85rem 1rem;margin-top:.1rem;}
-.sigs-lbl{font-family:"JetBrains Mono",monospace;font-size:11px;color:#ccc;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.55rem;}
-.sg{display:grid;grid-template-columns:1fr 1fr;gap:.5rem .9rem;}
-.si{font-size:13px;color:#fff;line-height:1.55;padding-left:12px;position:relative;}
-.si::before{content:"→";position:absolute;left:0;color:var(--vm);font-size:10px;}
-.si strong{color:var(--t);}
-.fcol{display:flex;flex-direction:column;gap:4px;}
-.fs{border:1px solid var(--br);border-radius:7px;padding:7px 11px;font-size:13px;color:#fff;text-align:center;}
-.fs.on{background:rgba(115,96,242,.11);border-color:var(--v);color:#fff;font-weight:600;}
-.fs.good{border-color:var(--g);color:var(--g);}
-.fs.bad{border-color:var(--r);color:var(--r);opacity:.65;}
-.farr{text-align:center;font-size:12px;color:var(--br);line-height:1.3;}
-ul.bl{list-style:none;padding:0;}
-ul.bl li{font-size:14px;color:#fff;line-height:1.65;padding-left:14px;position:relative;margin-bottom:3px;}
-ul.bl li::before{content:"→";position:absolute;left:0;color:var(--vm);font-size:10px;top:2px;}
-ul.bl li strong{color:var(--t);}
-.pt{width:100%;border-collapse:collapse;font-size:14px;}
-.pt th{text-align:left;padding:7px 11px;font-family:"JetBrains Mono",monospace;font-size:11px;color:#ccc;text-transform:uppercase;letter-spacing:.07em;border-bottom:1px solid var(--br);background:var(--s2);}
-.pt td{padding:9px 11px;border-bottom:1px solid rgba(255,255,255,.03);vertical-align:top;line-height:1.5;color:#fff;}
-.pt td:first-child{font-family:"JetBrains Mono",monospace;font-size:10px;color:var(--vm);white-space:nowrap;}
-.pt td strong{color:var(--t);}
-.pt tr.rest td{opacity:.25;font-style:italic;}
-.pt tr:last-child td{border-bottom:none;}
-.tag{font-family:"JetBrains Mono",monospace;font-size:9px;padding:2px 7px;border-radius:8px;display:inline-block;font-weight:500;}
-.tv{background:rgba(115,96,242,.14);color:var(--vm);}
-.ta{background:rgba(244,161,54,.12);color:var(--a);}
-.tg{background:rgba(46,204,138,.12);color:var(--g);}
-.ab{background:var(--s);border:1px solid var(--br);border-radius:12px;padding:1rem 1.1rem;}
-.ab.tx{border-color:var(--v);background:rgba(115,96,242,.06);}
-.ablbl{font-family:"JetBrains Mono",monospace;font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:var(--mu);margin-bottom:.35rem;}
-.abtitle{font-weight:700;font-size:15px;color:#fff;margin-bottom:.35rem;}
-.abbody{font-size:14px;color:#fff;line-height:1.6;}
-.dc{border-radius:11px;padding:.85rem;text-align:center;}
-.dc.ship{background:rgba(46,204,138,.07);border:1px solid rgba(46,204,138,.18);}
-.dc.iter{background:rgba(244,161,54,.07);border:1px solid rgba(244,161,54,.18);}
-.dc.kill{background:rgba(224,45,79,.07);border:1px solid rgba(224,45,79,.18);}
-.di{font-size:20px;margin-bottom:.2rem;}
-.dl{font-weight:700;font-size:12px;margin-bottom:.2rem;}
-.dc.ship .dl{color:var(--g);}
-.dc.iter .dl{color:var(--a);}
-.dc.kill .dl{color:var(--r);}
-.db{font-size:13px;color:#fff;line-height:1.5;}
-.ns{background:linear-gradient(135deg,rgba(115,96,242,.13),rgba(75,59,199,.05));border:1px solid rgba(115,96,242,.28);border-radius:13px;padding:1.2rem;text-align:center;margin-bottom:.8rem;}
-.nsl{font-family:"JetBrains Mono",monospace;font-size:9px;color:var(--vm);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.35rem;}
-.nsm{font-weight:800;font-size:17px;color:#fff;margin-bottom:.25rem;letter-spacing:-.01em;}
-.nsf{font-family:"JetBrains Mono",monospace;font-size:12px;color:#ccc;}
-.nst{margin-top:.5rem;font-size:13px;color:var(--g);font-weight:600;}
-.co{background:rgba(115,96,242,.07);border:1px solid rgba(115,96,242,.18);border-radius:10px;padding:.8rem 1rem;font-size:14px;color:#fff;line-height:1.65;margin:.6rem 0;}
-.co strong{color:var(--vm);}
-.mi{display:grid;grid-template-columns:175px 1fr 110px;gap:.6rem;align-items:start;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.03);font-size:12px;}
-.mi:last-child{border-bottom:none;}
-.mi-n{color:var(--t);font-weight:600;}
-.mi-d{color:#fff;line-height:1.5;}
-.mi-c{font-family:"JetBrains Mono",monospace;font-size:10px;color:var(--vm);}
-.fnav{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:1.6rem;border-top:1px solid var(--br);}
-.fnbtn{padding:6px 16px;border-radius:8px;border:1px solid var(--br);background:transparent;color:#fff;font-size:14px;cursor:pointer;font-family:"Plus Jakarta Sans",sans-serif;font-weight:500;transition:all .18s;}
-.fnbtn:hover{border-color:var(--v);color:var(--vm);}
-.fnbtn.p{background:var(--v);border-color:var(--v);color:#fff;font-weight:600;}
-.fnbtn.p:hover{background:var(--vd);}
-.fctr{font-family:"JetBrains Mono",monospace;font-size:10px;color:var(--mu);}
-.fn{font-size:13px;color:#ccc;margin-top:.75rem;opacity:.6;font-style:italic;}
-@media(max-width:680px){
-  .g2,.g3,.sg{grid-template-columns:1fr;}
-  .slide{padding:1.5rem 1rem 2.5rem;}
+
+/* Typography */
+.ttl{font-size:clamp(28px,3vw,42px);font-weight:800;line-height:1.1;color:#fff;margin-bottom:.5rem;letter-spacing:-.03em;}
+.sub{font-size:16px;color:rgba(255,255,255,.5);margin-bottom:2.5rem;line-height:1.6;}
+
+/* Funnel table */
+.funnel{width:100%;border-collapse:collapse;margin-bottom:2.5rem;}
+.funnel td{padding:1rem 1.25rem;border-bottom:1px solid rgba(255,255,255,.06);font-size:15px;vertical-align:middle;}
+.funnel tr:last-child td{border-bottom:none;}
+.funnel tr.hl td{background:rgba(115,96,242,.08);}
+.funnel tr.hl td:first-child{border-left:3px solid var(--v);}
+.pill-r{background:rgba(224,45,79,.15);color:#FF6B6B;border-radius:20px;padding:3px 12px;font-size:13px;font-weight:700;display:inline-block;}
+.pill-g{background:rgba(46,204,138,.15);color:#2ECC8A;border-radius:20px;padding:3px 12px;font-size:13px;font-weight:700;display:inline-block;}
+.pill-a{background:rgba(244,161,54,.15);color:#F4A136;border-radius:20px;padding:3px 12px;font-size:13px;font-weight:700;display:inline-block;}
+.funnel .note{color:rgba(255,255,255,.45);font-size:14px;}
+
+/* Hypothesis cards */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem;}
+.hyp{background:var(--s);border:1px solid var(--br);border-radius:14px;padding:1.5rem;}
+.hyp.high{border-left:3px solid var(--r);}
+.htag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--r);background:rgba(224,45,79,.12);border-radius:6px;padding:2px 8px;margin-bottom:.75rem;}
+.htitle{font-size:17px;font-weight:700;color:#fff;margin-bottom:.5rem;line-height:1.3;}
+.hbody{font-size:14px;color:rgba(255,255,255,.65);line-height:1.65;}
+.hbody strong{color:#fff;}
+
+/* H3-5 row */
+.sig-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.75rem;margin-bottom:2rem;}
+.sig{background:var(--s2);border-radius:10px;padding:1rem 1.1rem;}
+.sig-lbl{font-size:11px;font-weight:700;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.35rem;}
+.sig-txt{font-size:13px;color:rgba(255,255,255,.75);line-height:1.55;}
+
+/* Flow comparison */
+.flows{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2rem;}
+.flow-col{background:var(--s);border:1px solid var(--br);border-radius:14px;padding:1.5rem;}
+.flow-col.bad{border-color:rgba(224,45,79,.3);}
+.flow-col.good{border-color:rgba(46,204,138,.3);}
+.flow-lbl{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:1rem;}
+.flow-lbl.bad{color:var(--r);}
+.flow-lbl.good{color:var(--g);}
+.fcol{display:flex;flex-direction:column;gap:5px;}
+.fs{border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:9px 14px;font-size:14px;color:rgba(255,255,255,.5);text-align:center;}
+.fs.on{background:rgba(115,96,242,.15);border-color:var(--v);color:#fff;font-weight:600;}
+.fs.good{border-color:rgba(46,204,138,.5);color:var(--g);font-weight:600;}
+.fs.bad{border-color:rgba(224,45,79,.4);color:var(--r);}
+.fs.dim{opacity:.3;}
+.farr{text-align:center;font-size:13px;color:rgba(255,255,255,.2);line-height:1;}
+
+/* Screen cards */
+.screens{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.75rem;margin-bottom:1.5rem;}
+.scr{background:var(--s);border:1px solid var(--br);border-radius:12px;padding:1.25rem;}
+.scr.hi{border-color:var(--v);}
+.scr-lbl{font-size:11px;font-weight:700;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.6rem;}
+.scr-title{font-size:15px;font-weight:700;color:#fff;margin-bottom:.5rem;}
+.scr-body{font-size:13px;color:rgba(255,255,255,.6);line-height:1.6;}
+.trust-line{font-size:14px;color:rgba(255,255,255,.5);margin-top:1rem;line-height:1.6;padding-top:1rem;border-top:1px solid var(--br);}
+.trust-line strong{color:#fff;}
+
+/* Engagement table */
+.eng{width:100%;border-collapse:collapse;margin-bottom:1.5rem;}
+.eng th{text-align:left;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.35);padding:.6rem 1rem;border-bottom:1px solid rgba(255,255,255,.08);}
+.eng td{padding:.9rem 1rem;border-bottom:1px solid rgba(255,255,255,.05);font-size:14px;color:rgba(255,255,255,.75);vertical-align:top;line-height:1.5;}
+.eng td:first-child{color:rgba(255,255,255,.4);font-weight:700;white-space:nowrap;width:60px;}
+.eng td strong{color:#fff;}
+.eng tr.rest td{color:rgba(255,255,255,.2);font-style:italic;}
+.eng tr:last-child td{border-bottom:none;}
+.ch{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:8px;}
+.ch-v{background:rgba(115,96,242,.2);color:#9B8FF7;}
+.ch-p{background:rgba(244,161,54,.15);color:#F4A136;}
+.ch-g{background:rgba(46,204,138,.15);color:#2ECC8A;}
+
+/* A/B test */
+.ab-hyp{background:rgba(115,96,242,.08);border:1px solid rgba(115,96,242,.25);border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:1.25rem;font-size:15px;color:#fff;line-height:1.65;}
+.ab-hyp strong{color:#9B8FF7;}
+.ab2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.25rem;}
+.ab-box{background:var(--s);border:1px solid var(--br);border-radius:12px;padding:1.25rem;}
+.ab-box.tx{border-color:var(--v);background:rgba(115,96,242,.06);}
+.ab-lbl{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:.4rem;}
+.ab-title{font-size:16px;font-weight:700;color:#fff;margin-bottom:.5rem;}
+.ab-body{font-size:14px;color:rgba(255,255,255,.6);line-height:1.6;}
+.kpi3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.75rem;margin-bottom:1rem;}
+.kpi{background:var(--s2);border-radius:10px;padding:1rem;}
+.kpi-lbl{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.4rem;}
+.kpi-lbl.p{color:var(--v);}
+.kpi-lbl.s{color:var(--a);}
+.kpi-lbl.g{color:var(--r);}
+.kpi-body{font-size:13px;color:rgba(255,255,255,.7);line-height:1.5;}
+.sample{background:var(--s2);border-radius:10px;padding:.9rem 1.1rem;font-size:14px;color:rgba(255,255,255,.6);margin-bottom:1.25rem;line-height:1.6;}
+.sample strong{color:#fff;}
+.dc3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.75rem;margin-bottom:1.5rem;}
+.dc{border-radius:12px;padding:1rem;text-align:center;}
+.dc.ship{background:rgba(46,204,138,.07);border:1px solid rgba(46,204,138,.2);}
+.dc.iter{background:rgba(244,161,54,.07);border:1px solid rgba(244,161,54,.2);}
+.dc.kill{background:rgba(224,45,79,.07);border:1px solid rgba(224,45,79,.2);}
+.dc-icon{font-size:22px;margin-bottom:.3rem;}
+.dc-lbl{font-size:13px;font-weight:700;margin-bottom:.2rem;}
+.dc.ship .dc-lbl{color:var(--g);}
+.dc.iter .dc-lbl{color:var(--a);}
+.dc.kill .dc-lbl{color:var(--r);}
+.dc-body{font-size:12px;color:rgba(255,255,255,.55);line-height:1.45;}
+
+/* North star */
+.ns{background:linear-gradient(135deg,rgba(115,96,242,.15),rgba(75,59,199,.05));border:1px solid rgba(115,96,242,.3);border-radius:14px;padding:1.5rem;text-align:center;margin-bottom:1.25rem;}
+.ns-lbl{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(115,96,242,.7);margin-bottom:.4rem;}
+.ns-metric{font-size:22px;font-weight:800;color:#fff;margin-bottom:.3rem;letter-spacing:-.02em;}
+.ns-formula{font-size:13px;color:rgba(255,255,255,.4);margin-bottom:.4rem;}
+.ns-target{font-size:15px;font-weight:700;color:var(--g);}
+
+/* Leading indicators */
+.ind3{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:.75rem;}
+.ind{background:var(--s);border:1px solid var(--br);border-radius:10px;padding:1rem;}
+.ind-name{font-size:14px;font-weight:700;color:#fff;margin-bottom:.3rem;}
+.ind-desc{font-size:12px;color:rgba(255,255,255,.5);line-height:1.5;margin-bottom:.4rem;}
+.ind-freq{font-size:11px;font-weight:700;color:var(--v);}
+
+/* Footer nav */
+.fnav{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:2rem;border-top:1px solid var(--br);}
+.fnbtn{padding:7px 18px;border-radius:8px;border:1px solid var(--br);background:transparent;color:rgba(255,255,255,.45);font-size:13px;cursor:pointer;font-family:"Plus Jakarta Sans",sans-serif;font-weight:600;transition:all .18s;}
+.fnbtn:hover{border-color:var(--v);color:#fff;}
+.fnbtn.p{background:var(--v);border-color:var(--v);color:#fff;}
+
+@media(max-width:720px){
+  .slide{padding:1.5rem 1.25rem 2rem;}
+  .g2,.flows,.screens,.ab2,.kpi3,.dc3,.sig-row,.ind3{grid-template-columns:1fr;}
   .nav .pills{display:none;}
-  .mi{grid-template-columns:1fr;}
 }
 </style>
 </head>
 <body>
 
 <nav class="nav">
-  <div class="nb">Viber Pay · Card Activation</div>
+  <div class="nb">💜 Viber Pay · Card Activation</div>
   <div class="pills">
     <button class="pill on" onclick="go(0)">01 Diagnose</button>
     <button class="pill" onclick="go(1)">02 Design</button>
     <button class="pill" onclick="go(2)">03 Engage</button>
     <button class="pill" onclick="go(3)">04 Measure</button>
   </div>
-  <div class="nby">Prepared by Tony Yung</div>
+  <div class="nby">Tony Yung</div>
 </nav>
 
 <div class="slides">
 
 <!-- S1 DIAGNOSE -->
 <div class="slide on" id="s0">
-  <div class="ey">01 / 04 — Diagnosis</div>
-  <div class="ttl">Where the 5% Active Rate Is Being Lost</div>
-  <div class="sub">Four compounding drop-offs — but one stage dominates. The active rate is a first transaction problem.</div>
+  <div class="ttl">Where the 5% Active Rate<br>Is Being Lost</div>
+  <div class="sub">One stage dominates. This is a first transaction problem.</div>
 
-  <div class="card">
-    <div class="clbl">The Funnel</div>
-    <table class="ft">
-      <thead><tr><th>Stage</th><th>Rate</th><th>Read</th></tr></thead>
-      <tbody>
-        <tr>
-          <td>Start → KYC complete</td>
-          <td><span class="bx b-w">40%</span></td>
-          <td style="color:#fff;font-size:14px;">Intentional quality filter. Deliberate move to full KYC. Not a problem to fix.</td>
-        </tr>
-        <tr>
-          <td>KYC complete → Card requested</td>
-          <td><span class="bx b-ok">60%</span></td>
-          <td style="color:#fff;font-size:14px;">Reasonable for a product 2 months post-migration.</td>
-        </tr>
-        <tr class="hl">
-          <td><strong>Card issued → First transaction</strong></td>
-          <td><span class="bx b-r">20%</span></td>
-          <td style="font-size:12px;"><strong>This IS the active rate. Primary lever.</strong></td>
-        </tr>
-        <tr>
-          <td>First transaction → Repeat same month</td>
-          <td><span class="bx b-w">40%</span></td>
-          <td style="color:#fff;font-size:14px;">Fixable once first transaction is solved.</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <table class="funnel">
+    <tbody>
+      <tr>
+        <td>Start → KYC complete</td>
+        <td><span class="pill-a">40%</span></td>
+        <td class="note">Intentional quality filter. Not a problem to fix.</td>
+      </tr>
+      <tr>
+        <td>KYC complete → Card requested</td>
+        <td><span class="pill-g">60%</span></td>
+        <td class="note">Reasonable 2 months post-migration.</td>
+      </tr>
+      <tr class="hl">
+        <td><strong>Card issued → First transaction</strong></td>
+        <td><span class="pill-r">20%</span></td>
+        <td><strong>Primary lever. This IS the active rate.</strong></td>
+      </tr>
+      <tr>
+        <td>First transaction → Repeat same month</td>
+        <td><span class="pill-a">40%</span></td>
+        <td class="note">Fixable once first transaction is solved.</td>
+      </tr>
+    </tbody>
+  </table>
 
-  <div class="g2" style="margin-bottom:.8rem;">
-    <div class="hyp" style="border-left:3px solid var(--r);">
-      <div class="htop">
-        <div class="htitle">H1 — Card issued, wallet empty</div>
-        <div class="imp ih">HIGH · Low effort</div>
-      </div>
-      <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--mu);margin-bottom:.5rem;letter-spacing:.06em;">STAGE: Card issued → First transaction</div>
-      <div class="hbody">
-        Transaction data: <strong>66% of all card failures are insufficient balance.</strong> Intentional low-balance behaviour — users tap hopefully without funding first. Each failed auth has a unit cost.
-        <ul class="pts">
-          <li><strong>Auto-freeze after 3 consecutive declines</strong> — user must actively unfreeze. Reduces auth cost, signals the problem back to the user, and prompts top-up at the unfreeze step.</li>
-          <li><strong>Strategic fix:</strong> A credit product removes pre-funding entirely. User spends against a credit line, repays later. Eliminates root cause. Roadmap item.</li>
-        </ul>
-      </div>
+  <div class="g2">
+    <div class="hyp high">
+      <div class="htag">HIGH IMPACT · H1</div>
+      <div class="htitle">Card issued, wallet empty</div>
+      <div class="hbody"><strong>66% of card failures are insufficient balance.</strong> Users tap with no money in the wallet. Each failed auth has a unit cost.<br><br>Fix: auto-freeze after 3 consecutive declines. Strategic fix: credit product removes pre-funding entirely.</div>
     </div>
-    <div class="hyp" style="border-left:3px solid var(--r);">
-      <div class="htop">
-        <div class="htitle">H2 — Issuance moment wastes peak intent</div>
-        <div class="imp ih">HIGH · Low effort</div>
-      </div>
-      <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--mu);margin-bottom:.5rem;letter-spacing:.06em;">STAGE: Card issued → First transaction</div>
-      <div class="hbody">
-        User just completed KYC — most effortful step in the funnel. <strong>Peak intent.</strong> Current flow issues the card immediately with no funding gate — card appears active but declines on every transaction.
-        <ul class="pts">
-          <li><strong>Gate the card:</strong> Virtual card not issued until wallet has a balance. Top-up first, card reveal is the reward. No milestone moment is wasted.</li>
-          <li><strong>Validate:</strong> Time between KYC completion and first top-up attempt. Card issuance completion rate delta.</li>
-        </ul>
-      </div>
+    <div class="hyp high">
+      <div class="htag">HIGH IMPACT · H2</div>
+      <div class="htitle">Issuance moment wastes peak intent</div>
+      <div class="hbody">User just completed KYC — <strong>peak intent.</strong> Card is issued immediately with €0 wallet. Appears active. Declines on every tap.<br><br>Fix: gate the card. Fund first, card reveal is the reward. No milestone moment is wasted.</div>
     </div>
   </div>
 
-  <div class="sigs">
-    <div class="sigs-lbl">Further signals — transaction data · prioritised Impact × Effort</div>
-    <div class="sg">
-      <div class="si"><strong>H3 — No first use case [MED · First transaction]:</strong> Transport is the natural anchor — habitual, low value, contactless accepted on EU transit already. No partnership needed.</div>
-      <div class="si"><strong>H4 — Virtual card UX unfamiliar [MED · First transaction]:</strong> CVC2 failures (202), online PIN attempts (121). Each error needs a 1-tap in-context fix at point of failure.</div>
-      <div class="si"><strong>H5 — Apple Pay errors (339) [MED · First transaction]:</strong> Likely manual card entry into Apple Wallet rather than native provisioning. Native provisioning flow removes this failure category.</div>
-      <div class="si"><strong>Sequencing:</strong> H3–5 are Medium Impact, Medium Effort. Address after H1 and H2 are live and measured.</div>
+  <div class="sig-row">
+    <div class="sig">
+      <div class="sig-lbl">H3 · Medium</div>
+      <div class="sig-txt"><strong>No clear first use case.</strong> Transport is the natural anchor — habitual, low value, no partnership needed.</div>
+    </div>
+    <div class="sig">
+      <div class="sig-lbl">H4 · Medium</div>
+      <div class="sig-txt"><strong>Virtual card UX unfamiliar.</strong> CVC2 failures (202), online PIN exceeded (121). Fix at point of failure.</div>
+    </div>
+    <div class="sig">
+      <div class="sig-lbl">H5 · Medium</div>
+      <div class="sig-txt"><strong>Apple Pay errors (339).</strong> Likely manual card entry, not native provisioning. Native flow removes this category.</div>
     </div>
   </div>
 
   <div class="fnav">
     <div></div>
-    <div class="fctr">01 / 04</div>
-    <button class="fnbtn p" onclick="go(1)">Design Experience →</button>
+    <button class="fnbtn p" onclick="go(1)">Design →</button>
   </div>
 </div>
 
 <!-- S2 DESIGN -->
 <div class="slide" id="s1">
-  <div class="ey">02 / 04 — Design</div>
   <div class="ttl">Collapsing the Gap Between<br>Card Issued and Card Used</div>
-  <div class="sub">The prototype shows the full interactive flow. This slide covers the key design decisions.</div>
+  <div class="sub">Gate the card behind a top-up. Fund first, card is the reward.</div>
 
-  <div class="g2" style="margin-bottom:.8rem;">
-    <div class="card" style="border-left:3px solid var(--r);margin-bottom:0;">
-      <div class="clbl">Current — broken</div>
+  <div class="flows">
+    <div class="flow-col bad">
+      <div class="flow-lbl bad">Current — broken</div>
       <div class="fcol">
-        <div class="fs">KYC complete</div><div class="farr">↓</div>
-        <div class="fs bad">Card issued with €0 wallet</div><div class="farr">↓</div>
-        <div class="fs bad">Card appears active — declines on first use</div><div class="farr">↓</div>
-        <div class="fs" style="opacity:.35;">80% never transact</div>
+        <div class="fs">KYC complete</div>
+        <div class="farr">↓</div>
+        <div class="fs bad">Card issued with €0 wallet</div>
+        <div class="farr">↓</div>
+        <div class="fs bad">Card appears active — declines on first use</div>
+        <div class="farr">↓</div>
+        <div class="fs dim">80% never transact</div>
       </div>
     </div>
-    <div class="card" style="border-left:3px solid var(--g);margin-bottom:0;">
-      <div class="clbl">Proposed</div>
+    <div class="flow-col good">
+      <div class="flow-lbl good">Proposed</div>
       <div class="fcol">
-        <div class="fs">KYC complete</div><div class="farr">↓</div>
-        <div class="fs on">Top-up prompt — fund wallet first</div><div class="farr">↓</div>
-        <div class="fs on">Wallet funded — card now issued</div><div class="farr">↓</div>
-        <div class="fs on">Card reveal — milestone reward moment</div><div class="farr">↓</div>
-        <div class="fs on">Badge + sticker unlock + first transaction prompt</div><div class="farr">↓</div>
-        <div class="fs good">First transaction</div>
+        <div class="fs">KYC complete</div>
+        <div class="farr">↓</div>
+        <div class="fs on">Top-up prompt — fund wallet first</div>
+        <div class="farr">↓</div>
+        <div class="fs on">Card issued + revealed as milestone</div>
+        <div class="farr">↓</div>
+        <div class="fs on">Badge + sticker unlock</div>
+        <div class="farr">↓</div>
+        <div class="fs on">Buy stickers · €1.99 → 50% off next</div>
+        <div class="farr">↓</div>
+        <div class="fs good">First transaction ✓</div>
       </div>
     </div>
   </div>
 
-  <div class="g3">
-    <div class="card" style="margin-bottom:0;">
-      <div class="clbl">Screen 1 · Top-Up First</div>
-      <ul class="bl">
-        <li><strong>"Add money to get your Viber Pay card"</strong> — card is the reward for funding</li>
-        <li>Bottom sheet — minimal taps</li>
-        <li><strong>Linked e-wallet</strong> — primary CTA (instant)</li>
-        <li><strong>Bank transfer</strong> — secondary option</li>
-        <li>€10 pre-selected, editable</li>
-      </ul>
+  <div class="screens">
+    <div class="scr">
+      <div class="scr-lbl">Screen 1</div>
+      <div class="scr-title">Top-Up First</div>
+      <div class="scr-body">Linked e-wallet (instant) or bank transfer. €10 pre-selected. Card is the reward — not issued until wallet is funded.</div>
     </div>
-    <div class="card" style="margin-bottom:0;border-color:var(--v);">
-      <div class="clbl" style="color:var(--v);">Screen 2 · Card Reveal</div>
-      <ul class="bl">
-        <li>Full colour Viber Pay card revealed — user's name, full Viber purple</li>
-        <li><strong>"Your Viber Pay card is ready"</strong></li>
-        <li>Card is the reward for topping up — not a gate to get past</li>
-        <li>Trust line: "Regulated in the EU. Funds protected."</li>
-      </ul>
+    <div class="scr hi">
+      <div class="scr-lbl">Screen 2</div>
+      <div class="scr-title">Card Reveal</div>
+      <div class="scr-body">Full colour card revealed after funding — milestone moment. "Your Viber Pay card is ready 🎉" Trust: Regulated in the EU · Funds protected.</div>
     </div>
-    <div class="card" style="margin-bottom:0;">
-      <div class="clbl">Screen 3 · Reward + First Use</div>
-      <ul class="bl">
-        <li><strong>Reward unlock:</strong> Viber Pay profile badge + exclusive sticker pack</li>
-        <li><strong>First transaction prompt:</strong> Buy a sticker pack for €1.99 with your new Viber Pay card — card-exclusive offer</li>
-        <li><strong>Retention hook:</strong> 50% off next sticker pack after purchase — creates a reason to return and spend again</li>
-        <li>Single CTA: "Buy stickers · €1.99 →"</li>
-      </ul>
+    <div class="scr">
+      <div class="scr-lbl">Screen 3</div>
+      <div class="scr-title">Reward + First Use</div>
+      <div class="scr-body">Badge unlocked. Sticker pack unlocked. Immediate prompt: buy a sticker pack for €1.99, get 50% off the next one. Real spend, real retention hook.</div>
     </div>
   </div>
 
-  <div class="co" style="margin-top:.7rem;">
-    <strong>Trust in a messaging app:</strong> Users sharing financial data inside a messaging app need explicit reassurance. Three design principles: (1) Viber Pay screens use a distinct visual treatment — clearly separated from chat UI. (2) Every financial screen shows the regulatory line ("Regulated in the EU · Your funds are protected by a licensed EU institution"). (3) Biometric authentication (Face ID / fingerprint) is required before any card details are shown — same as a banking app, not a messaging app.
-  </div>
-  <div class="fn">P2P activation is a parallel track — designed and measured independently from card activation.</div>
+  <div class="trust-line"><strong>Trust in a messaging app:</strong> Distinct visual treatment from chat UI · Regulatory line on every financial screen · Biometric auth before card details are shown.</div>
 
   <div class="fnav">
     <button class="fnbtn" onclick="go(0)">← Diagnose</button>
-    <div class="fctr">02 / 04</div>
-    <button class="fnbtn p" onclick="go(2)">First Week →</button>
+    <button class="fnbtn p" onclick="go(2)">Engage →</button>
   </div>
 </div>
 
 <!-- S3 ENGAGE -->
 <div class="slide" id="s2">
-  <div class="ey">03 / 04 — Engagement</div>
   <div class="ttl">Day 0–7: From Card Issued<br>to Habit Formed</div>
-  <div class="sub">5 touchpoints, 3 channels, intentional rest days. Assumes current flow — card already issued, wallet may or may not be funded. Every notification deep-links to exactly the right screen.</div>
+  <div class="sub">5 touchpoints · 3 channels · intentional rest days. Payments come to where the user already is.</div>
 
-  <div class="card">
-    <table class="pt">
-      <thead>
-        <tr><th>Day</th><th>Channel</th><th>Message</th><th>Rationale</th></tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Day 0</td>
-          <td><span class="tag tv">In-flow</span></td>
-          <td><strong>Card issued — prompt to add money and use your card.</strong> Top-up sheet surfaced immediately post-issuance. No notification needed if user completes inline.</td>
-          <td style="font-size:11px;color:var(--mu);">Peak intent at issuance — capture it in the moment before it dissipates.</td>
-        </tr>
-        <tr class="rest">
-          <td>Day 2, 4, 6</td><td>—</td><td>Rest days — avoid opt-out fatigue</td><td>—</td>
-        </tr>
-        <tr>
-          <td>Day 1</td>
-          <td><span class="tag tv">Viber msg</span></td>
-          <td><strong>"💳 Your Viber Pay card is ready — add money and make your first purchase today."</strong> From Viber Pay system contact. Quick-reply: "Add money now" → top-up sheet · "How it works" → inline guide.</td>
-          <td style="font-size:11px;color:var(--mu);">Arrives in existing chat list, not as a push. Higher open rate. User already in Viber context.</td>
-        </tr>
-        <tr>
-          <td>Day 3</td>
-          <td><span class="tag tv">In-chat</span></td>
-          <td><strong>"Send money to [Name] right here →"</strong> Banner in chat with a Viber Pay contact. Only shown if contact has Viber Pay.</td>
-          <td style="font-size:11px;color:var(--mu);">Real social moment — user has a concrete reason to top up and use the card right now.</td>
-        </tr>
-        <tr>
-          <td>Day 5</td>
-          <td><span class="tag ta">Push</span></td>
-          <td><strong>"[X] of your Viber contacts are already using Viber Pay — don't miss out."</strong> Personalised contact count pulled from user's Viber graph.</td>
-          <td style="font-size:11px;color:var(--mu);">Social proof over loss aversion. Personalised count feels relevant, not generic. Push reaches users not actively in Viber.</td>
-        </tr>
-        <tr>
-          <td>Day 7</td>
-          <td><span class="tag tg">Push + in-app</span></td>
-          <td><strong>"🚇 Use your Viber Pay card on public transport today — we'll cover your first ride."</strong> Transit-only credit (MCC 4111) loaded to card. Non-activated users only.</td>
-          <td style="font-size:11px;color:var(--mu);">Specific use case over generic cashback. Ties directly to the transit first-use framing. Day 7 timing avoids incentivising users who would have activated anyway.</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="card" style="margin-bottom:0;">
-    <div class="clbl">Channel logic</div>
-    <ul class="bl">
-      <li><strong>Viber messages (Day 1, 3)</strong> — arrive in existing chat list, not as a push notification. Higher open rate. Native deep-linking to Pay tab. Best for users actively using Viber.</li>
-      <li><strong>Push notifications (Day 5, 7)</strong> — reach users not actively opening Viber. Broader reach, lower conversion. Used for re-engagement only.</li>
-      <li><strong>In-chat contextual (Day 3)</strong> — highest intent, lowest reach. Only surfaces when a real social trigger exists (Viber Pay contact in active chat).</li>
-    </ul>
-  </div>
+  <table class="eng">
+    <thead>
+      <tr><th>Day</th><th>Channel</th><th>Action</th><th>Why it works</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>0</td>
+        <td><span class="ch ch-v">In-flow</span></td>
+        <td>Card issued → top-up sheet surfaced immediately. <strong>Capture peak intent before it dissipates.</strong></td>
+        <td>Highest intent moment in the funnel.</td>
+      </tr>
+      <tr class="rest"><td>2,4,6</td><td>—</td><td>Rest days</td><td>Avoid notification fatigue.</td></tr>
+      <tr>
+        <td>1</td>
+        <td><span class="ch ch-v">Viber msg</span></td>
+        <td><strong>"💳 Your card is ready — add money and make your first purchase today."</strong> Quick-reply: Add money now / How it works.</td>
+        <td>Arrives in chat list, not push. Higher open rate. Native context.</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td><span class="ch ch-v">In-chat</span></td>
+        <td><strong>"Send money to [Name] right here →"</strong> Banner inside chat with a Viber Pay contact.</td>
+        <td>Real social moment. Highest intent, messaging-native.</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td><span class="ch ch-p">Push</span></td>
+        <td><strong>"[X] of your Viber contacts use Viber Pay."</strong> Personalised count from social graph.</td>
+        <td>Social proof. Reaches users not actively in Viber.</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td><span class="ch ch-g">Push + in-app</span></td>
+        <td><strong>"🎭 Buy a sticker pack for €1.99 — get 50% off your next one. Viber Pay exclusive."</strong> Non-activated only.</td>
+        <td>Specific, in-app, completable now. Card-exclusive — Apple Pay can't match it.</td>
+      </tr>
+    </tbody>
+  </table>
 
   <div class="fnav">
     <button class="fnbtn" onclick="go(1)">← Design</button>
-    <div class="fctr">03 / 04</div>
     <button class="fnbtn p" onclick="go(3)">Measure →</button>
   </div>
 </div>
 
 <!-- S4 MEASURE -->
 <div class="slide" id="s3">
-  <div class="ey">04 / 04 — Measure & Test</div>
-  <div class="ttl">Test the Funding Gate.<br>Measure What Predicts the Monthly Number.</div>
-  <div class="sub">One focused A/B test on the highest-leverage intervention. Leading indicators that move weeks before the monthly report.</div>
+  <div class="ttl">Test the Gate.<br>Measure What Predicts the Number.</div>
+  <div class="sub">One focused A/B test. Leading indicators that move before the monthly report does.</div>
 
-  <div class="card" style="margin-bottom:.8rem;">
-    <div class="clbl">A/B Test — Fund First vs Current Flow</div>
-    <div class="co" style="margin-top:0;margin-bottom:.8rem;">
-      <strong>Hypothesis:</strong> If we require users to fund their wallet before the virtual card is issued, first card transaction rate within 7 days will increase from 20% to ≥28% — because users arrive at card issuance with money already in the wallet, removing the primary reason for first-transaction failure.
+  <div class="ab-hyp">
+    <strong>Hypothesis:</strong> If we require wallet funding before card issuance, 7-day first-transaction rate will increase from 20% to ≥28% — because users arrive at card issuance with money already in the wallet.
+  </div>
+
+  <div class="ab2">
+    <div class="ab-box">
+      <div class="ab-lbl">Control</div>
+      <div class="ab-title">Current flow</div>
+      <div class="ab-body">Card issued with €0 wallet. Declines on every transaction attempt. No prompt, no urgency.</div>
     </div>
-    <div class="g2" style="margin-bottom:.8rem;">
-      <div class="ab">
-        <div class="ablbl">Control</div>
-        <div class="abtitle">Current Experience</div>
-        <div class="abbody">KYC complete → virtual card issued immediately → user lands on €0 wallet. Card appears active but declines on every transaction attempt. No prompt, no urgency, no forward action.</div>
-      </div>
-      <div class="ab tx">
-        <div class="ablbl">Treatment</div>
-        <div class="abtitle">Fund First — Card as Reward</div>
-        <div class="abbody">KYC complete → top-up prompt (linked e-wallet or bank transfer, €10 pre-selected) → wallet funded → virtual card issued and revealed as a milestone reward. Card is only issued after the wallet has a balance. Consistent with full KYC philosophy — optimising for quality over volume.</div>
-      </div>
-    </div>
-    <div class="g3" style="gap:.7rem;">
-      <div style="background:var(--s2);border-radius:9px;padding:.85rem;">
-        <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--vm);text-transform:uppercase;letter-spacing:.09em;margin-bottom:.3rem;">Primary KPI</div>
-        <div style="font-size:12px;color:var(--t);line-height:1.5;">% of card-issued users completing first transaction within 7 days</div>
-      </div>
-      <div style="background:var(--s2);border-radius:9px;padding:.85rem;">
-        <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--a);text-transform:uppercase;letter-spacing:.09em;margin-bottom:.3rem;">Secondary</div>
-        <div style="font-size:14px;color:#fff;line-height:1.5;">Wallet balance at first transaction attempt<br>Time KYC complete → first top-up<br>Top-up completion rate</div>
-      </div>
-      <div style="background:var(--s2);border-radius:9px;padding:.85rem;">
-        <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--r);text-transform:uppercase;letter-spacing:.09em;margin-bottom:.3rem;">Guardrails</div>
-        <div style="font-size:14px;color:#fff;line-height:1.5;">Card issuance completion rate<br>Fraud rate<br>Auth cost per user</div>
-      </div>
-    </div>
-    <div style="margin-top:.7rem;font-size:11px;color:var(--mu);padding:.7rem .9rem;background:var(--s2);border-radius:8px;line-height:1.6;">
-      <strong style="color:var(--t);">Sample &amp; duration:</strong> ~500 per variant · 3–4 weeks · 95% significance · 80% power · 8pp minimum detectable effect<br><strong style="color:var(--t);">Assumptions:</strong> Baseline first-transaction rate 20% · top-up completion rate ~30% at current state
+    <div class="ab-box tx">
+      <div class="ab-lbl">Treatment</div>
+      <div class="ab-title">Fund First — Card as Reward</div>
+      <div class="ab-body">Top-up prompt post-KYC. Linked e-wallet or bank transfer. Card only issued after wallet is funded. Consistent with full KYC quality-first philosophy.</div>
     </div>
   </div>
 
-  <div class="g3" style="margin-bottom:.8rem;">
-    <div class="dc ship"><div class="di">🚀</div><div class="dl">Ship</div><div class="db">≥8pp improvement. Issuance completion stable. Roll out.</div></div>
-    <div class="dc iter"><div class="di">🔄</div><div class="dl">Iterate</div><div class="db">3–7pp gain but issuance completion drops. Add a "Remind me later" soft option and retest.</div></div>
-    <div class="dc kill"><div class="di">🛑</div><div class="dl">Kill</div><div class="db">Flat or negative. Revert and investigate via session recordings.</div></div>
+  <div class="kpi3">
+    <div class="kpi">
+      <div class="kpi-lbl p">Primary KPI</div>
+      <div class="kpi-body">% of card-issued users completing first transaction within 7 days</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-lbl s">Secondary</div>
+      <div class="kpi-body">Wallet balance at first attempt · Time KYC→top-up · Top-up completion rate</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-lbl g">Guardrails</div>
+      <div class="kpi-body">Card issuance completion rate · Fraud rate · Auth cost per user</div>
+    </div>
+  </div>
+
+  <div class="sample"><strong>Sample:</strong> ~500 per variant · 3–4 weeks · 95% significance · 80% power · 8pp MDE · <strong>Baseline:</strong> 20% first-transaction rate</div>
+
+  <div class="dc3">
+    <div class="dc ship"><div class="dc-icon">🚀</div><div class="dc-lbl">Ship</div><div class="dc-body">≥8pp gain. Issuance stable.</div></div>
+    <div class="dc iter"><div class="dc-icon">🔄</div><div class="dc-lbl">Iterate</div><div class="dc-body">3–7pp but issuance drops. Add "Remind me later".</div></div>
+    <div class="dc kill"><div class="dc-icon">🛑</div><div class="dc-lbl">Kill</div><div class="dc-body">Flat or negative. Session recordings.</div></div>
   </div>
 
   <div class="ns">
-    <div class="nsl">North Star Metric</div>
-    <div class="nsm">Monthly Virtual Card Active Rate</div>
-    <div class="nsf">= users with ≥1 card transaction in month ÷ total card-issued users × 100</div>
-    <div class="nst">Target: 5% → 10% in 3 months</div>
+    <div class="ns-lbl">North Star</div>
+    <div class="ns-metric">Monthly Virtual Card Active Rate</div>
+    <div class="ns-formula">users with ≥1 transaction ÷ total card-issued users × 100</div>
+    <div class="ns-target">5% → 10% in 3 months</div>
   </div>
 
-  <div class="card" style="margin-bottom:0;">
-    <div class="clbl">Leading Indicators</div>
-    <div class="mi">
-      <div class="mi-n">Day-7 first transaction rate</div>
-      <div class="mi-d">Earliest signal — monthly number follows in 3–4 weeks.</div>
-      <div class="mi-c">Weekly · Product</div>
+  <div class="ind3">
+    <div class="ind">
+      <div class="ind-name">Day-7 first transaction rate</div>
+      <div class="ind-desc">Monthly number follows in 3–4 weeks.</div>
+      <div class="ind-freq">Weekly · Product</div>
     </div>
-    <div class="mi">
-      <div class="mi-n">Same-session top-up rate</div>
-      <div class="mi-d">% who fund wallet during the post-KYC session. Most actionable daily signal weeks 1–4.</div>
-      <div class="mi-c">Daily (wks 1–4)</div>
+    <div class="ind">
+      <div class="ind-name">Same-session top-up rate</div>
+      <div class="ind-desc">% funding wallet during post-KYC session.</div>
+      <div class="ind-freq">Daily · wks 1–4</div>
     </div>
-    <div class="mi">
-      <div class="mi-n">Insufficient balance decline rate</div>
-      <div class="mi-d">If funding gate works, this drops. Also tracks auth cost per failed attempt.</div>
-      <div class="mi-c">Daily (wks 1–4)</div>
+    <div class="ind">
+      <div class="ind-name">Insufficient balance decline rate</div>
+      <div class="ind-desc">If gate works, this drops.</div>
+      <div class="ind-freq">Daily · wks 1–4</div>
     </div>
-    <div class="mi">
-      <div class="mi-n">Health metrics</div>
-      <div class="mi-d">Fraud rate, issuance completion rate, support volume. Must not degrade while pursuing growth.</div>
-      <div class="mi-c">Weekly · Risk</div>
+    <div class="ind">
+      <div class="ind-name">Health</div>
+      <div class="ind-desc">Fraud rate · issuance completion · support volume.</div>
+      <div class="ind-freq">Weekly · Risk</div>
     </div>
   </div>
 
   <div class="fnav">
     <button class="fnbtn" onclick="go(2)">← Engage</button>
-    <div class="fctr">04 / 04</div>
     <button class="fnbtn p" onclick="go(0)">↺ Start</button>
   </div>
 </div>
